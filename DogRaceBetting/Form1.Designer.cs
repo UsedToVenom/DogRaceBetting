@@ -28,6 +28,7 @@
         /// </summary>
         public void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.player1Bet = new System.Windows.Forms.ComboBox();
             this.player2Bet = new System.Windows.Forms.ComboBox();
             this.player3Bet = new System.Windows.Forms.ComboBox();
@@ -56,6 +57,8 @@
             this.Player3CashLabel = new System.Windows.Forms.Label();
             this.Player2CashLabel = new System.Windows.Forms.Label();
             this.Player1CashLabel = new System.Windows.Forms.Label();
+            this.playerListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.playerListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // player1Bet
@@ -67,6 +70,7 @@
             this.player1Bet.Name = "player1Bet";
             this.player1Bet.Size = new System.Drawing.Size(121, 21);
             this.player1Bet.TabIndex = 0;
+            this.player1Bet.DataSource = PlayerList.GetListOfPlayers()[0].LegalBetValues;
             // 
             // player2Bet
             // 
@@ -76,6 +80,7 @@
             this.player2Bet.Size = new System.Drawing.Size(121, 21);
             this.player2Bet.TabIndex = 1;
             this.player2Bet.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.player2Bet.DataSource = PlayerList.GetListOfPlayers()[1].LegalBetValues;
             // 
             // player3Bet
             // 
@@ -84,6 +89,7 @@
             this.player3Bet.Name = "player3Bet";
             this.player3Bet.Size = new System.Drawing.Size(121, 21);
             this.player3Bet.TabIndex = 2;
+            this.player3Bet.DataSource = PlayerList.GetListOfPlayers()[2].LegalBetValues;
             // 
             // RaceButton
             // 
@@ -155,7 +161,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(176, 23);
             this.progressBar1.TabIndex = 16;
-            this.progressBar1.Value = 0;
             // 
             // progressBar2
             // 
@@ -291,6 +296,10 @@
             this.Player1CashLabel.Size = new System.Drawing.Size(0, 13);
             this.Player1CashLabel.TabIndex = 32;
             // 
+            // playerListBindingSource
+            // 
+            this.playerListBindingSource.DataSource = typeof(DogRaceBetting.PlayerList);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,6 +336,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.playerListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +372,7 @@
         public System.Windows.Forms.Label Player3CashLabel;
         public System.Windows.Forms.Label Player2CashLabel;
         public System.Windows.Forms.Label Player1CashLabel;
+        private System.Windows.Forms.BindingSource playerListBindingSource;
     }
 }
 

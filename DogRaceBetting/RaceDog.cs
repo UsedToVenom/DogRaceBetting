@@ -10,9 +10,13 @@ namespace DogRaceBetting
     {
         public string name;
         public int id;
+
+        //parameters for future development
         int speed;
         int endurance;
         int will;
+        //
+
         public bool hasRun = false;
         public int ranMeters = 0;
         public RaceDog(string name) {
@@ -26,10 +30,14 @@ namespace DogRaceBetting
             {
                 ranMeters += new Random().Next(10);                
             }
-            else if (ranMeters >= 0){
+            else if (ranMeters >= 100){
                 WinnersTable.addDogToTable(this);
                 ranMeters = -1;
+                if (WinnersTable.winnerDogTable.Length.Equals(DogList.list.Count)) {
+                    Bank.grantWinnings(PlayerList.GetListOfPlayers());
+                }
             }
+            System.Threading.Thread.Sleep(5);
         }
     }
 }

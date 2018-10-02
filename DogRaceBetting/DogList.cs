@@ -48,7 +48,7 @@ namespace DogRaceBetting
                 if (DogList.list[randomDog].ranMeters != -1)
                 {
                     race();
-                }
+                }                
             }
         }
     }

@@ -13,23 +13,38 @@ namespace DogRaceBetting
         public int dogBetId { get; set; }
         public int moneyBet { get; set; }
 
+        public List<int> LegalBetValues = new List<int>();
+
         public Player(string name, int cash){
             this.Name = name;
             this.cash = cash;
+            PlayerList.Add(this);
+            this.UpdateLegalBetValues();
             }
 
-        public void Bet(int moneyBet, int dogId)
+        public void UpdateLegalBetValues() {
+            LegalBetValues.Clear();
+            int TempCash = cash;
+
+            while (TempCash >= 10) {
+                LegalBetValues.Add(TempCash/10*10);
+                TempCash -= 10;
+            }
+        }
+
+        public void Bet(int moneyToBet, int dogId)
         {
-            if (moneyBet > cash)
+            if (moneyToBet > cash)
             {
                 Bank.collect(0);
                 dogBetId = -1;
+                moneyBet = 0;
             }
             else
             {
-                cash -= moneyBet;
-                Bank.collect(moneyBet);
-                this.moneyBet = moneyBet;
+                cash -= moneyToBet;
+                Bank.collect(moneyToBet);
+                moneyBet = moneyToBet;
                 dogBetId = dogId;
             }
         }

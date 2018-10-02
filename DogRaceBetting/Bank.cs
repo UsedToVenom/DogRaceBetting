@@ -16,19 +16,19 @@ namespace DogRaceBetting
         public static void collect (int money) {
             bankedCash += money;
         }
-        public static void grantWinnings(Player [] listOfPlayers) {
+        public static void grantWinnings(List <Player> listOfPlayers) {
             List <Player> listOfWinners = new List<Player> { };
             int winningDogId = WinnersTable.Winner().id;
             int winningsDelivered = 0;
             int winnersPool = 0;
 
-            for (int i = 0; i < listOfPlayers.Length; i++) {
+            for (int i = 0; i < listOfPlayers.Count; i++) {
                 if (listOfPlayers[i].dogBetId.Equals(winningDogId)) {
                     listOfWinners.Add(listOfPlayers[i]);
                     winnersPool += listOfPlayers[i].moneyBet;
                 }
             }
-            for (int i = 0; i < listOfPlayers.Length; i++) {
+            for (int i = 0; i < listOfPlayers.Count; i++) {
                 totalMoneyBet = totalMoneyBet + listOfPlayers[i].moneyBet;
             }
             for (int i = 0; i < listOfWinners.Count; i++) {

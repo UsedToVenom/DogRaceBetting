@@ -18,13 +18,6 @@ namespace DogRaceBetting
         }
 
 
-        public string Player1Name
-        {
-            get { return Player1Label.Text; }
-            set { Player1Label.Text = value; }
-        }
-
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -45,17 +38,39 @@ namespace DogRaceBetting
             
         }
 
-        private void RaceButton_Click(object sender, EventArgs e)
-        {
-            //get values from player1,2,3Bet fields and dogId  and call bet money with them
+        private void RaceButton_Click(object sender, EventArgs e){            
+            for (int i = 0; i <= 5; i++){
+                WinnersTable.winnerDogTable[i] = null;
+            }
+
+                PlayerList.GetListOfPlayers()[0].Bet(Int32.Parse(player1Bet.Text), 152);
+            PlayerList.GetListOfPlayers()[1].Bet(Int32.Parse(player2Bet.Text), 152);
+            PlayerList.GetListOfPlayers()[2].Bet(Int32.Parse(player3Bet.Text), 152);
+
+            PlayerList.GetListOfPlayers()[0].UpdateLegalBetValues();
+            Console.WriteLine(PlayerList.GetListOfPlayers()[0].LegalBetValues.GetHashCode());
+            PlayerList.GetListOfPlayers()[1].UpdateLegalBetValues();
+            PlayerList.GetListOfPlayers()[2].UpdateLegalBetValues();
+
+            player1Bet.Update();
+
+            //Console.WriteLine(player1Bet.DataSource.GetHashCode());
+
 
             DogList.race();
-
-            //update cash values for players, mark winning dog, reset player 123 bet and dog id fields
+            
+            Player1CashLabel.Text = PlayerList.GetListOfPlayers()[0].cash.ToString();
+            Player2CashLabel.Text = PlayerList.GetListOfPlayers()[1].cash.ToString();
+            Player3CashLabel.Text = PlayerList.GetListOfPlayers()[2].cash.ToString();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DogToBetOn1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
